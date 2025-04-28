@@ -1,0 +1,58 @@
+DROP TABLE IF EXISTS (table_name);//complete delete
+USE employeemanagementsystem;
+
+//employee Table
+
+CREATE TABLE employee (
+    name VARCHAR(100),
+    fname VARCHAR(100),
+    dob VARCHAR(20),
+    nid VARCHAR(30) UNIQUE,
+    phone VARCHAR(20),
+    email VARCHAR(100),
+    education VARCHAR(50),
+    empId INT PRIMARY KEY,
+    address VARCHAR(255),
+    designation VARCHAR(50),
+    salary VARCHAR(20)
+);
+
+
+//emplooyeelogin Table
+//Create the employeelogin table with a foreign key referencing employee(empid)
+CREATE TABLE employeelogin (
+    username VARCHAR(15) NOT NULL,
+    password VARCHAR(15) NOT NULL,
+    PRIMARY KEY (username),
+    FOREIGN KEY (username) REFERENCES employee(empid)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+
+
+//Leave_request Table
+CREATE TABLE leave_requests (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    empId VARCHAR(20),
+    leaveType VARCHAR(50),
+    reason TEXT,
+    leaveDate DATE,
+    status VARCHAR(20)
+);
+
+
+//Attendance Table
+CREATE TABLE attendance (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    empId VARCHAR(20),
+    date DATE,
+    status VARCHAR(20)
+);
+
+//Notice Table
+CREATE TABLE notices (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    notice TEXT NOT NULL
+);
+
